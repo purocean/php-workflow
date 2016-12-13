@@ -1,0 +1,22 @@
+{
+    "name": "purocean/php-workflow",
+    "type": "library",
+    "description": "A simple exclusive workflow lib",
+    "keywords": ["workflow"],
+    "homepage": "https://github.com/purocean/php-workflow",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/purocean/php-workflow/issues",
+        "source": "https://github.com/purocean/php-workflow"
+    },
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Workflow\\": "src/"
+        }
+    }
+}
