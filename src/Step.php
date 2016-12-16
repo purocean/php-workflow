@@ -40,7 +40,7 @@ class Step
      * @param string $stepId
      * @param mixed  $params
      */
-    public function setThen($stepId, $params)
+    public function setThen($stepId, $params = null)
     {
         $this->thenStep = $stepId;
         $this->thenParams = $params;
@@ -52,7 +52,7 @@ class Step
      * @param string $stepId
      * @param mixed  $params
      */
-    public function setElse($stepId, $params)
+    public function setElse($stepId, $params = null)
     {
         $this->elseStepId = $stepId;
         $this->elseParams = $params;

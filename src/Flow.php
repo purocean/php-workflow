@@ -33,18 +33,27 @@ class Flow
 
     /**
      * Run flow.
+     *
+     * @param bool  $pass
+     * @param mixed $params
+     *
+     * @return array
      */
-    public function run()
+    public function run($pass, $params)
     {
+        $result = [];
         foreach ($this->steps as $step) {
-            if ($object->onStep($step->id)) {
-                if ($object->passStep($step->params)) {
-                    $object->nextStep($step->thenStepId, $step->thenParams);
+            if ($object->onStep($step->id, $params)) {
+                if ($pass) {
+                    $object->nextStep($step->thenStepId, $step->thenParams, $params)
+                        and $result[$step->thenStep] = true;
                 } else {
-                    $object->nextStep($step->elseStepId, $step->elseParams);
+                    $object->nextStep($step->elseStepId, $step->elseParams, $params)
+                        and $result[$step->elseStepId] = true;
                 }
             }
         }
+
+        return $result;
     }
 }
-
