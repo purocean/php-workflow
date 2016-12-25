@@ -25,25 +25,19 @@ class Step
     }
 
     /**
-     * Set Params.
-     *
-     * @param mixed $params
-     */
-    public function setParams($params)
-    {
-        $this->params = $params;
-    }
-
-    /**
      * Set then.
      *
      * @param string $stepId
      * @param mixed  $params
+     *
+     * @return Step $this
      */
     public function setThen($stepId, $params = null)
     {
-        $this->thenStep = $stepId;
+        $this->thenStepId = $stepId;
         $this->thenParams = $params;
+
+        return $this;
     }
 
     /**
@@ -51,10 +45,14 @@ class Step
      *
      * @param string $stepId
      * @param mixed  $params
+     *
+     * @return Step $this
      */
     public function setElse($stepId, $params = null)
     {
         $this->elseStepId = $stepId;
         $this->elseParams = $params;
+
+        return $this;
     }
 }
