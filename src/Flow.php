@@ -39,7 +39,7 @@ class Flow
      *
      * @return array
      */
-    public function run($pass, $params)
+    public function run($pass, $params = null)
     {
         $result = [];
         foreach ($this->steps as $step) {
