@@ -2,7 +2,7 @@
 require '../src/FlowObjectInterface.php';
 
 /**
-* A example Object
+* An example Object
 */
 class Object implements \Workflow\FlowObjectInterface
 {
