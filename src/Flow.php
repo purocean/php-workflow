@@ -43,12 +43,12 @@ class Flow
     {
         $result = [];
         foreach ($this->steps as $step) {
-            if ($this->object->onStep($step->id, $params)) {
+            if ($this->object->onStep($step->id, $pass, $params)) {
                 if ($pass) {
-                    $this->object->nextStep($step->thenStepId, $step->thenParams, $params)
+                    $this->object->nextStep($step->thenStepId, $pass, $step->thenParams, $params)
                         and $result[$step->thenStepId] = true;
                 } else {
-                    $this->object->nextStep($step->elseStepId, $step->elseParams, $params)
+                    $this->object->nextStep($step->elseStepId, $pass, $step->elseParams, $params)
                         and $result[$step->elseStepId] = true;
                 }
 

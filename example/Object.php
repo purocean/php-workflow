@@ -21,7 +21,7 @@ class Object implements \Workflow\FlowObjectInterface
     /**
      * @inheritdoc FlowObjectInterface
      */
-    public function onStep($stepId, $runParams = null)
+    public function onStep($stepId, $pass, $runParams = null)
     {
         return $stepId === $this->status;
     }
@@ -29,7 +29,7 @@ class Object implements \Workflow\FlowObjectInterface
     /**
      * @inheritdoc FlowObjectInterface
      */
-    public function nextStep($stepId, $params = null, $runParams = null)
+    public function nextStep($stepId, $pass, $params = null, $runParams = null)
     {
         $this->status = $stepId;
         // You can save status
