@@ -1,4 +1,5 @@
 <?php
+
 namespace Workflow;
 
 /**
@@ -6,56 +7,40 @@ namespace Workflow;
 */
 class Flow
 {
-    public $object = null;
-    public $action = null;
-    public $steps = [];
+    public $id;
+    public $name;
+    public $lines = [];
+    public $nodes = [];
+    public $ext;
 
-
-    /**
-     * Attachable object implement FlowFlowObjectInterface.
-     *
-     * @param FlowFlowObjectInterface $object
-     */
-    public function __construct($object)
+    public function __construct($id, $name, $ext = null)
     {
-        $this->object = $object;
+        $this->id = $id;
+        $this->name = $name;
+        $this->ext = $ext;
     }
 
-    /**
-     * Add step.
-     *
-     * @param Step $step
-     */
-    public function addStep($step)
+    public function addLine(Line $line)
     {
-        $this->steps[] = $step;
+        $this->lines[$line->id] = $line;
     }
 
-    /**
-     * Run flow.
-     *
-     * @param bool  $pass
-     * @param mixed $params
-     *
-     * @return array
-     */
-    public function run($pass, $params = null)
+    public function setLines($lines)
     {
-        $result = [];
-        foreach ($this->steps as $step) {
-            if ($this->object->onStep($step->id, $pass, $params)) {
-                if ($pass) {
-                    $this->object->nextStep($step->thenStepId, $pass, $step->thenParams, $params)
-                        and $result[$step->thenStepId] = true;
-                } else {
-                    $this->object->nextStep($step->elseStepId, $pass, $step->elseParams, $params)
-                        and $result[$step->elseStepId] = true;
-                }
-
-                break;
-            }
+        foreach ($lines as $line) {
+            $this->addLine($line);
         }
+    }
 
-        return $result;
+    public function addNode(Node $node)
+    {
+        $this->nodes[$node->id] = $node;
+    }
+
+    public function setNodes($nodes)
+    {
+        foreach ($nodes as $node) {
+            $this->addNode($node);
+        }
     }
 }
